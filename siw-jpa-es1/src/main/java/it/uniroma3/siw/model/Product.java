@@ -58,6 +58,7 @@ public class Product {
         return code;
     }
 
+    @Column(unique = true, nullable = false)
     public void setCode(String code) {
         this.code = code;
     }
