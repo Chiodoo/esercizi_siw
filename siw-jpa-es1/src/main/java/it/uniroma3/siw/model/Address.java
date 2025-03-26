@@ -27,6 +27,8 @@ public class Address {
     @Column(nullable = false)
     private String country;
 
+    //-----------------METODI-----------------//
+
     public long getId() {
         return id;
     }
@@ -79,7 +81,6 @@ public class Address {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (id ^ (id >>> 32));
         result = prime * result + ((street == null) ? 0 : street.hashCode());
         result = prime * result + ((city == null) ? 0 : city.hashCode());
         result = prime * result + ((state == null) ? 0 : state.hashCode());
@@ -97,8 +98,6 @@ public class Address {
         if (getClass() != obj.getClass())
             return false;
         Address other = (Address) obj;
-        if (id != other.id)
-            return false;
         if (street == null) {
             if (other.street != null)
                 return false;

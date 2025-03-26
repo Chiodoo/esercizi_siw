@@ -1,10 +1,13 @@
 package it.uniroma3.siw.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Product {
@@ -20,7 +23,21 @@ public class Product {
     @Column(length = 2000)
     private String description;
     
+    @Column(unique = true, nullable = false)
     private String code;
+
+    @OneToMany(mappedBy = "product")
+    private List<OrderLine> orderLines;
+
+    //-----------------METODI-----------------//
+    
+    public List<OrderLine> getOrderLines() {
+        return orderLines;
+    }
+
+    public void setOrderLines(List<OrderLine> orderLines) {
+        this.orderLines = orderLines;
+    }
 
     public Long getId() {
         return id;
