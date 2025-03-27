@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -29,8 +31,19 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<OrderLine> orderLines;
 
+    @ManyToMany(mappedBy = "products")
+    private List<Provider> providers;
+
     //-----------------METODI-----------------//
     
+    public List<Provider> getProviders() {
+        return providers;
+    }
+
+    public void setProviders(List<Provider> providers) {
+        this.providers = providers;
+    }
+
     public List<OrderLine> getOrderLines() {
         return orderLines;
     }
