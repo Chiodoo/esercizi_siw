@@ -15,11 +15,11 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(uniqueConstraints =@UniqueConstraint(columnNames = {"firstName", "lastName", "dateOfBirth"}))
-public class Customer {
+@Table(uniqueConstraints =@UniqueConstraint(columnNames = {"firstName", "lastName", "dateOfBirth"}))    //Non vogliamo che ci siano due clienti
+public class Customer {                                                                                 //con lo stesso nome, cognome e data di nascita
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO) //Ciao carmine
     private Long id;
 
     @Column(nullable = false)
