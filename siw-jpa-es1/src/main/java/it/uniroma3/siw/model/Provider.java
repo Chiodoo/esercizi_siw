@@ -2,6 +2,7 @@ package it.uniroma3.siw.model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,8 +28,10 @@ public class Provider {
     @ManyToMany      //Non serve mettere due mapping nelle ManyToMany, basta metterlo solo in una direzione
     private List<Product> products;
 
-    @OneToOne
+    @OneToOne(cascade ={CascadeType.PERSIST, CascadeType.REMOVE})
     private Address address;
+    //CascadeType.PERSIST: se il fornitore viene salvato, anche l'indirizzo viene salvato
+    //CascadeType.REMOVE: se il fornitore viene rimosso, anche l'indirizzo viene rimosso
 
     //-----------------METODI-----------------//
 

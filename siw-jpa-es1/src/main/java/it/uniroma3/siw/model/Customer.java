@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,14 +37,15 @@ public class Customer {                                                         
 
     private LocalDateTime registrationDate;
 
-    @OneToOne
+    @OneToOne(cascade ={CascadeType.PERSIST, CascadeType.REMOVE})
     private Address address;
+    //CascadeType.PERSIST: se il cliente viene salvato, anche l'indirizzo viene salvato
+    //CascadeType.REMOVE: se il cliente viene rimosso, anche l'indirizzo viene rimosso
 
-    @OneToMany(mappedBy = "payer")
-    private List<Order> payedOrders;
-
-    @OneToMany(mappedBy = "deliver")
+    @OneToMany(mappedBy = "customer", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Order> orders;
+    //CascadeType.PERSIST: se il cliente viene salvato, anche gli ordini vengono salvati
+    //CascadeType.REMOVE: se il cliente viene rimosso, anche gli ordini vengono rimossi
 
     //-----------------METODI-----------------//
 
@@ -53,14 +55,6 @@ public class Customer {                                                         
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
-    }
-
-    public List<Order> getPayedOrders() {
-        return payedOrders;
-    }
-
-    public void setPayedOrders(List<Order> payedOrders) {
-        this.payedOrders = payedOrders;
     }
 
     public Long getId() {

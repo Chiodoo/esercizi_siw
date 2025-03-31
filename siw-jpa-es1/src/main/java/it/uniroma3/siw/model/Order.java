@@ -3,6 +3,7 @@ package it.uniroma3.siw.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -25,32 +26,25 @@ public class Order {
     @Column(nullable = false)
     private LocalDateTime creationTime;
 
-    @OneToMany(fetch=FetchType.EAGER)
+    @OneToMany(fetch=FetchType.EAGER,cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     @JoinColumn(name = "order_id")
     private List<OrderLine> orderLines;
+    //CascadeType.PERSIST: se l'ordine viene salvato, anche le righe d'ordine vengono salvate
+    //CascadeType.REMOVE: se l'ordine viene rimosso, anche le righe d'ordine vengono rimosse
+    //CascadeType.MERGE: se l'ordine viene aggiornato, anche le righe d'ordine vengono aggiornate
+    //FetchType.EAGER: le righe d'ordine vengono caricate insieme all'ordine
 
     @ManyToOne
-    private Customer payer;
-
-    @ManyToOne
-    private Customer deliver;
+    private Customer customer;
 
     //-----------------METODI-----------------//
-    
-    public Customer getDeliver() {
-        return deliver;
+
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setDeliver(Customer deliver) {
-        this.deliver = deliver;
-    }
-
-    public Customer getPayer() {
-        return payer;
-    }
-
-    public void setPayer(Customer payer) {
-        this.payer = payer;
+    public void setCustomer(Customer payer) {
+        this.customer = payer;
     }
 
     public Long getId() {
