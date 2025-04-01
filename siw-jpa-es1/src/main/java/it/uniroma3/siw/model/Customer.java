@@ -181,4 +181,11 @@ public class Customer {                                                         
             return false;
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+                + ", phoneNumber=" + phoneNumber + ", dateOfBirth=" + dateOfBirth + ", registrationDate="
+                + registrationDate + ", orders=" + orders + "]";
+    }
 }
