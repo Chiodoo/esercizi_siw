@@ -7,6 +7,7 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -37,10 +38,11 @@ public class Customer {                                                         
 
     private LocalDateTime registrationDate;
 
-    @OneToOne(cascade ={CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToOne(fetch=FetchType.LAZY ,cascade ={CascadeType.PERSIST, CascadeType.REMOVE})
     private Address address;
     //CascadeType.PERSIST: se il cliente viene salvato, anche l'indirizzo viene salvato
     //CascadeType.REMOVE: se il cliente viene rimosso, anche l'indirizzo viene rimosso
+    //FetchType.LAZY: l'indirizzo viene caricato solo quando viene richiesto
 
     @OneToMany(mappedBy = "customer", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Order> orders;
