@@ -21,7 +21,7 @@ import jakarta.persistence.UniqueConstraint;
 public class Customer {                                                                                 //con lo stesso nome, cognome e data di nascita
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) //Ciao carmine
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(nullable = false)

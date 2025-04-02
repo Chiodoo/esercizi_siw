@@ -27,8 +27,8 @@ public class SiwJpaEs1Application implements CommandLineRunner {
 
 		// //Creo un nuovo customer
 		// Customer customer = new Customer();
-		// customer.setFirstName("Harold");
-		// customer.setLastName("Barroga");
+		// customer.setName("Harold");
+		// customer.setSurname("Barroga");
 
 		// //Creo un nuovo address
 		// Address address = new Address();
