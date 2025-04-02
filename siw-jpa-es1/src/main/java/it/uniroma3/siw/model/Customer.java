@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(uniqueConstraints =@UniqueConstraint(columnNames = {"firstName", "lastName", "dateOfBirth"}))    //Non vogliamo che ci siano due clienti
+@Table(uniqueConstraints =@UniqueConstraint(columnNames = {"name", "surname", "dateOfBirth"}))    //Non vogliamo che ci siano due clienti
 public class Customer {                                                                                 //con lo stesso nome, cognome e data di nascita
 
     @Id
@@ -25,10 +25,10 @@ public class Customer {                                                         
     private Long id;
 
     @Column(nullable = false)
-    private String firstName;
+    private String name;
 
     @Column(nullable = false)
-    private String lastName;
+    private String surname;
 
     private String email;
 
@@ -67,20 +67,20 @@ public class Customer {                                                         
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String firstName) {
+        this.name = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSurname(String lastName) {
+        this.surname = lastName;
     }
 
     public String getEmail() {
@@ -127,8 +127,8 @@ public class Customer {                                                         
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-        result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((surname == null) ? 0 : surname.hashCode());
         result = prime * result + ((email == null) ? 0 : email.hashCode());
         result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
         result = prime * result + ((dateOfBirth == null) ? 0 : dateOfBirth.hashCode());
@@ -146,15 +146,15 @@ public class Customer {                                                         
         if (getClass() != obj.getClass())
             return false;
         Customer other = (Customer) obj;
-        if (firstName == null) {
-            if (other.firstName != null)
+        if (name == null) {
+            if (other.name != null)
                 return false;
-        } else if (!firstName.equals(other.firstName))
+        } else if (!name.equals(other.name))
             return false;
-        if (lastName == null) {
-            if (other.lastName != null)
+        if (surname == null) {
+            if (other.surname != null)
                 return false;
-        } else if (!lastName.equals(other.lastName))
+        } else if (!surname.equals(other.surname))
             return false;
         if (email == null) {
             if (other.email != null)
@@ -186,7 +186,7 @@ public class Customer {                                                         
 
     @Override
     public String toString() {
-        return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+        return "Customer [id=" + id + ", firstName=" + name + ", lastName=" + surname + ", email=" + email
                 + ", phoneNumber=" + phoneNumber + ", dateOfBirth=" + dateOfBirth + ", registrationDate="
                 + registrationDate + ", orders=" + orders + "]";
     }
