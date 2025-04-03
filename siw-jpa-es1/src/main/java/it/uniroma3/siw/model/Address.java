@@ -125,4 +125,10 @@ public class Address {
             return false;
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Address [id=" + id + ", street=" + street + ", city=" + city + ", state=" + state + ", zipcode="
+                + zipcode + ", country=" + country + "]";
+    }
 }
